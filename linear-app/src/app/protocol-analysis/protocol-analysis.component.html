@@ -1,0 +1,230 @@
+<div id="analysis-bar">
+    <img id="logo" src="/assets/logo.png" alt="Tiger icons created by Freepik - Flaticon"/>
+    <div id="acronym">FELINE</div>
+    <div id="definition">
+        <span class="highlight">FE</span>derated
+        <span class="highlight">LINE</span>ar
+        bandits
+    </div>
+</div>
+
+<!-- begin: Content Bar -->
+<div id="content">
+    <!-- begin center -->
+    <div id="center">
+        <!-- begin: left -->
+        <div id="left">
+            <!-- begin: architecture -->
+            <div id="architecture">
+                <img src="assets/architecture2.png" alt="" id="architecture-img">
+            </div>
+            <!-- end: architecture-->
+
+            <!-- begin: actions  -->
+            <div class="actions">
+                <!-- begin: dataset -->
+                <div class="input">
+                    <label for="input-dataset">Dataset</label>
+                    <select id="input-dataset">
+                        <option>Synthetic</option>
+                        <option>MIMIC</option>
+                        <option>MovieLens</option>
+                    </select>
+                </div>
+                <!-- end: dataset -->
+
+                <!-- begin: M input -->
+                <div class="input">
+                    <label for="input-M">Number of DataOwners M</label>
+                    <select id="input-M"  [(ngModel)]="userInputs.M" (ngModelChange)="inputChangedByUser()">
+                        <option *ngFor="let M of this.parametersValues.list_M" [value]="M">
+                            {{M}}
+                        </option>
+                    </select>
+                </div>
+                <!-- end: M input -->
+
+                <!-- begin: K input -->
+                <div class="input">
+                    <label for="input-K">Numbers of Arms K</label>
+                    <select id="input-K"  [(ngModel)]="userInputs.K" (ngModelChange)="inputChangedByUser()">
+                        <option *ngFor="let K of this.parametersValues.list_K" [value]="K">
+                            {{K}}
+                        </option>
+                    </select>
+                </div>
+                <!-- end: K input -->
+
+                <!-- begin: N input -->
+                <div class="input">
+                    <label for="input-N">Budget N</label>
+                    <select id="input-N"  [(ngModel)]="userInputs.N" (ngModelChange)="inputChangedByUser()">
+                        <option *ngFor="let N of this.parametersValues.list_N" [value]="N">
+                            {{N}}
+                        </option>
+                    </select>
+                </div>
+                <!-- end: N input -->
+
+                <!-- begin: d input -->
+                <div class="input">
+                    <label for="input-d">Data Dimension d</label>
+                    <select id="input-d"  [(ngModel)]="userInputs.d" (ngModelChange)="inputChangedByUser()">
+                        <option *ngFor="let d of this.parametersValues.list_d" [value]="d">
+                            {{d}}
+                        </option>
+                    </select>
+                </div>
+                <!-- end: d input -->
+
+                <!-- begin: security-inputs -->
+                <div id="security-inputs">
+                    <div class="security-button"
+                         id="plaintext-button"
+                         [class.active]="userInputs.security == PLAINTEXT_VERSION"
+                         (click)="setUserInputSecurity(PLAINTEXT_VERSION)">
+                        Plaintext
+                    </div>
+
+                    <div class="security-button"
+                         id="masked-button"
+                         [class.active]="userInputs.security == MASKED_VERSION"
+                         (click)="setUserInputSecurity(MASKED_VERSION)">
+                        Ciphertext
+                    </div>
+                </div>
+                <!-- end: security-inputs -->
+            </div>
+            <!-- end: actions -->
+        </div>
+        <!-- end: left -->
+
+        <!-- begin: right -->
+        <div id="right">
+
+            <!-- begin: row -->
+            <div class="row">
+                <!-- begin: federated  -->
+                <div id="federated" class="zone">
+
+
+                    <div class="row-header">
+                        <div class="title">
+                            Federation
+                        </div>
+                    </div>
+
+                    <!-- begin: content -->
+                    <div class="content">
+
+
+
+                        <!-- begin: rewards -->
+                        <div class="cell" id="federated-cell-rewards">
+                            <div echarts [options]="federatedRewardsOption" id="federated-rewards" class="chart"></div>
+                        </div>
+
+                        <!-- end: rewards -->
+
+                        <!-- begin: mse -->
+                        <div class="cell" id="federated-cell-mse">
+                            <div echarts [options]="federatedMSEOption" id="federated-mse" class="chart"></div>
+                        </div>
+                        <!-- end: mse -->
+                    </div>
+
+
+                    <!--div class="details" [routerLink]="['/parameters']">More Details</div-->
+                </div>
+                <!-- end: federated -->
+
+                <!-- begin: security  -->
+                <div id="security" class="zone">
+                    <div class="row-header">
+                        <div class="title">Security</div>
+
+                    </div>
+
+                    <!-- begin: content -->
+                    <div class="content">
+                        <!-- begin: time -->
+                        <div class="cell" id="security-cell-time">
+                            <div echarts [options]="securityPlaintextTimeByComponentOption" class="chart"></div>
+                        </div>
+                        <!-- end: time -->
+
+                        <!-- begin: time by components -->
+                        <div class="cell" id="security-cell-time-components">
+                            <div echarts [options]="securityMaskedTimeByComponentOption" class="chart"></div>
+                        </div>
+                        <!-- end: time by components -->
+                    </div>
+                    <!-- end: content -->
+
+
+
+                    <!--div class="details" [routerLink]="['/security']">More Details</div-->
+                </div>
+                <!-- end: security  -->
+            </div>
+            <!-- end: row -->
+
+
+
+        </div>
+        <!-- end: right -->
+    </div>
+    <!-- end: center -->
+
+    <!-- begin: bottom  -->
+    <div id="bottom">
+        <!-- begin: scalable  -->
+        <div id="scalable" class="zone">
+
+            <!-- begin: row-header -->
+            <div class="row-header">
+                <div class="title">Scalability</div>
+
+            </div>
+            <!-- end: row-header -->
+
+            <!-- begin: content -->
+            <div class="content">
+                <!-- begin: param by M -->
+                <div class="cell" id="scalability-cell-param-M">
+                    <div echarts [options]="scalabilityTimeByMParamOption" class="chart"></div>
+                </div>
+                <!-- end: param by M -->
+
+                <!-- begin: param by d -->
+                <div class="cell" id="scalability-cell-param-d">
+                    <div echarts [options]="scalabilityTimeBydParamOption" class="chart"></div>
+                </div>
+                <!-- end: param by d -->
+
+                <!-- begin: param by K -->
+                <div class="cell" id="scalability-cell-param-K">
+                    <div echarts [options]="scalabilityTimeByKParamOption" class="chart"></div>
+                </div>
+                <!-- end: param by K -->
+
+                <!-- begin: param by N -->
+                <div class="cell" id="scalability-cell-param-N">
+                    <div echarts [options]="scalabilityTimeByNParamOption" class="chart"></div>
+                </div>
+                <!-- end: param by N -->
+
+            </div>
+            <!-- end: content -->
+
+            <!--div class="details" [routerLink]="['/parameters']">More Details</div-->
+        </div>
+        <!-- end: scalable  -->
+    </div>
+    <!-- end: bottom  -->
+
+
+</div>
+<!-- end: Content Bar -->
+
+

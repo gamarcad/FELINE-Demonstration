@@ -1,0 +1,48 @@
+<!-- begin: bar -->
+<div id="bar">
+    <div class="left">
+        <div class="button" [routerLink]="['/']">Back</div>
+    </div>
+</div>
+<!-- end: bar -->
+
+<!-- begin: content -->
+<div id="content">
+
+    <!-- begin: row -->
+    <div class="row">
+
+        <!-- begin: title -->
+        <div class="title">
+            Unsecure
+        </div>
+        <!-- end: title -->
+
+        <!-- begin: cell -->
+        <div class="cell" >
+            <div echarts [options]="unsecureOptions" class="chart"></div>
+        </div>
+        <!-- end: cell -->
+
+    </div>
+    <!-- end: row -->
+
+    <!-- begin: row -->
+    <div class="row">
+
+        <!-- begin: title -->
+        <div class="title">
+            Secure
+        </div>
+        <!-- end: title -->
+
+        <!-- begin: cell -->
+        <div class="cell">
+            <div echarts [options]="secureOptions" class="chart"></div>
+        </div>
+        <!-- end: cell -->
+
+    </div>
+    <!-- end: row -->
+</div>
+<!-- end: content -->

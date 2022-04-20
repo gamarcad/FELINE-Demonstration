@@ -1,0 +1,46 @@
+// bar scss file that describe how the bar is exposed
+
+// ====================================
+// Bar Layout
+// ====================================
+#bar {
+    display: flex;
+    width: 100%;
+    height: auto;
+    min-height: 30px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+
+    .inputs {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        vertical-align: center;
+        align-items: center;
+        align-content: center;
+        width: 100%;
+    }
+}
+
+
+// ====================================
+// Bar Style
+// ====================================
+$barColor: #525050;
+#bar {
+    background: $barColor;
+    color: white;
+
+    .input label {
+        margin-right: 5px;
+    }
+
+    .button, button {
+        display: block;
+        padding: 5px;
+        color: $barColor;
+        background-color: white;
+    }
+
+
+}

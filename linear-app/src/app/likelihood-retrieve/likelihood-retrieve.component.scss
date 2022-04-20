@@ -1,0 +1,47 @@
+// ===============================
+// layout
+// ===============================
+#content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+
+    .row {
+        display: flex;
+        flex-direction: row;
+        height: 50%;
+
+        .cell {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+        }
+    }
+}
+
+
+// ===============================
+// Charts Layout
+// ===============================
+.chart {
+    width: 90%;
+    height: 75%;
+}
+
+
+// ===============================
+// Layout Style
+// ===============================
+#content {
+    .row {
+        padding: 5px;
+        .title {
+            font-size: 24pt;
+
+        }
+    }
+}

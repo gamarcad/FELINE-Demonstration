@@ -1,0 +1,23 @@
+# base image
+FROM debian:latest
+
+# network config
+EXPOSE 4200
+
+WORKDIR /app
+
+RUN apt update && apt upgrade -y && apt install npm -y
+
+# install application in the container
+COPY ./linear-app/ /app/
+
+# install application's dependancies
+RUN npm install -g @angular/cli && npm install
+
+
+
+
+
+
+
+

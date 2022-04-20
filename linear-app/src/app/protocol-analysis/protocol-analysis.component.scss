@@ -1,0 +1,185 @@
+$codeColor : rgb(187, 181, 181);
+$borderColor: rgb(0, 0, 0);
+$shadow: rgba(100, 100, 111, 0.2) 0px 7px 15px 0px;
+$actionsColor: rgb(92, 94, 92);
+$zoneTitleColor: rgb(79, 79, 79);
+
+
+// ================================
+// Layout
+// ================================
+
+#logo {
+    height: 60%;
+    margin-right: 10px;
+}
+
+
+#content {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: 96%;
+
+
+    #center {
+        display: flex;
+        flex-direction: row;
+        height: 70%;
+    }
+
+    #bottom {
+        height: 30%;
+    }
+
+    #left {
+        width: 30%;
+    }
+
+    #right {
+        width: 70%;
+    }
+}
+
+#architecture #architecture-img {
+    width: 100%;
+    z-index: 0;
+}
+
+
+#security .cell, #federated .cell {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+#scalable {
+    padding-top: 0;
+}
+
+
+.actions  {
+    #security-inputs {
+        display: flex;
+        flex-direction: row;
+        margin: 5px;
+
+        .security-button {
+            width: 50%;
+            padding: 5px;
+            border-radius: 5px;
+
+            &:first-child {
+                margin-right: 4px;
+            }
+
+            $plaintextColor: #F06FB5;
+            $maskedColor: #0BDEB4;
+
+            &#plaintext-button {
+                color: $plaintextColor;
+                border: 1px solid $plaintextColor;
+                background: white;
+                &.active {
+                    color: white;
+                    background: $plaintextColor;
+                }
+            }
+
+            &#masked-button {
+                color: $maskedColor;
+                background: white;
+                border: 1px solid $maskedColor;
+                &.active {
+                    color: white;
+                    background: $maskedColor;
+                }
+            }
+        }
+    }
+
+    .input {
+        margin: 5px;
+        padding: 5px;
+        border: 1px solid $actionsColor;
+        color: white;
+        background: $actionsColor;
+        border-radius: 5px;
+
+        label {
+            display: inline-block;
+            width: 50%;
+        }
+
+        select {
+            width: 50%;
+        }
+
+    }
+}
+
+.zone {
+    padding: 5px;
+
+    .title {
+        background: $zoneTitleColor;
+        font-size: 1.4em;
+        color: white;
+        padding: 5px;
+    }
+
+    .content {
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+
+#analysis-bar {
+    z-index: 1;
+    height: 5%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    font-size: 1.8em;
+    color: white;
+    background: $actionsColor;
+
+    #acronym {
+        font-weight: bold;
+        padding-right: 1em;
+        border-right: 1px solid white;
+    }
+
+    #definition {
+        margin-left: 1em;
+        .highlight {
+            font-weight: bold;
+        }
+    }
+}
+
+
+
+
+
+// ================================
+// Charts
+// ================================
+.chart {
+    width: 450px;
+    height: 250px;
+}
+
+#scalable {
+    width: 100%;
+    .cell {
+        width: 25%;
+    }
+    .chart {
+        width: 100%;
+    }
+}
+
+

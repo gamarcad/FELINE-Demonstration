@@ -1,0 +1,48 @@
+<!-- begin: bar -->
+<div id="bar">
+    <div class="left">
+        <div class="button" [routerLink]="['/']">Back</div>
+    </div>
+</div>
+<!-- end: bar -->
+
+<!-- begin: content -->
+<div id="content">
+    <!-- begin: filter -->
+    <div class="filter-row">
+        <div class="label">Filter</div>
+        <input type="text">
+    </div>
+    <!-- end: filter -->
+
+    <!-- begin: table -->
+    <div class="table">
+        <div class="header row">
+            <div class="cell">K</div>
+            <div class="cell">M</div>
+            <div class="cell">N</div>
+            <div class="cell">d</div>
+            <div class="cell">Sync</div>
+            <div class="cell">Sec</div>
+            <div class="cell">Time</div>
+            <div class="cell">Rewards</div>
+        </div>
+        <div class="entries">
+            <div class="entry row" *ngFor="let row of parametersImpactRows">
+                <div class="cell">{{row.entry.K}}</div>
+                <div class="cell">{{row.entry.M}}</div>
+                <div class="cell">{{row.entry.N}}</div>
+                <div class="cell">{{row.entry.d}}</div>
+                <div class="cell">{{row.entry.sync}}</div>
+                <div class="cell">{{row.entry.sec}}</div>
+                <div class="cell">{{row.entry.time}}</div>
+                <div class="cell">{{row.entry.rewards}}</div>
+            </div>
+        </div>
+
+    </div>
+    <!-- end: table -->
+
+
+</div>
+<!-- end: content -->

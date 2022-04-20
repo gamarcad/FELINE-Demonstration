@@ -1,0 +1,9 @@
+FROM python:3.7
+
+WORKDIR /app
+
+COPY ./linear-api/requirements.txt requirements.txt
+
+RUN python -m pip install --upgrade pip && pip3 install -r requirements.txt
+
+EXPOSE 8000

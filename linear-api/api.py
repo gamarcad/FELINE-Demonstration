@@ -59,12 +59,10 @@ app.add_middleware(
 
 
 @app.get("/")
-@lru_cache
 def home(): return "No Failure"
 
 
 
-@lru_cache()
 def read_recording_from_parameters( M, K, N, d ):
     for input_filename, input_entry in fragments.items():
         input = input_entry['input']

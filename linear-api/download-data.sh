@@ -4,5 +4,5 @@
 #   It allows to avoid the data processing that can be long.
 # --------------------------------------------
 
-wget https://drive.uca.fr/f/e77ab24f6e704e949068/
+wget https://drive.uca.fr/f/e77ab24f6e704e949068/?dl=1 -O data.zip
 unzip data.zip

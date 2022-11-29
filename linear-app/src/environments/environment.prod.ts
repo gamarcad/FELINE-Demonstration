@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  endpoint: "https://back-feline.limos.fr/api/"
+  endpoint: "https://back-feline.limos.fr/api"
 };

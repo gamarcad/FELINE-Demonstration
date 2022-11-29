@@ -57,3 +57,4 @@ Thumbs.db
 linear-app/.gitignore
 linear-app/.editorconfig
 linear-app/.browserslistrc
+docker-compose.yml

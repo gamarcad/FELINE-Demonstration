@@ -262,7 +262,7 @@ def generate_exhaustive_data(args):
                             delta=delta,
                             R=R,
                             theta=theta[:d],
-                            X=[[arm[:d] for arm in arms] for arms in data_owners_arms[:M]]
+                            X=[[arm[:d] for arm in arms][:K] for arms in data_owners_arms[:M]]
                         )
                         export(data, K, M, d, N)
 

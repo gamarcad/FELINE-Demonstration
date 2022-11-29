@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./DockerfileAPI
+    ports:
+      - "4200:8000"
+    volumes:
+      - ./linear-api:/app/
+    command: python3 -m uvicorn api:app --reload --host 0.0.0.0 --port 8000
+
+  app:
+    depends_on:
+      - 'api'
+    build:
+      context: .
+      dockerfile: ./DockerfileApp
+    ports:
+      - "8000:4200"
+    volumes:
+      - './linear-app/src:/app/src/'
+    command: ng serve --host 0.0.0.0 --port 4200

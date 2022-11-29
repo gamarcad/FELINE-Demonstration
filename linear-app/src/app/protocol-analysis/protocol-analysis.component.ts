@@ -11,6 +11,7 @@ import {ThethaMSEBySynchronization} from "../api/response/ThethaMSEBySynchroniza
 import {ParametersValues} from "../api/response/ParametersValues";
 import {ComponentExecutionTimeBySynchronization} from "../api/response/ComponentExecutionTimeBySynchronization";
 import {ComponentExecutionTime} from "../api/response/ComponentExecutionTime";
+import {RewardsBySynchronization} from "../api/response/RewardsBySynchronization";
 
 // Interface containing inputs from user
 interface UserInputs {
@@ -152,42 +153,41 @@ export class ProtocolAnalysisComponent implements OnInit {
         )
         */
 
-        this.backend.getThetaMSEBySynchronization({
+        this.backend.getRewardsBySynchronization({
             algorithm: Algorithm.LINUCB,
             algorithm_security: this.userInputs.security,
             M: this.userInputs.M,
             N: this.userInputs.N,
             d: this.userInputs.d,
             K: this.userInputs.K,
-            iteration: 'it-0',
         }).subscribe(
-            ( response:  ThethaMSEBySynchronization ) => {
+            ( response:  RewardsBySynchronization ) => {
                 this.federatedRewardsOption = NGXLinearPlot.CreateMultiLinesOptions({
-                    title: "Theta Approximation",
+                    title: "Rewards by Synchronization",
                     legend: true,
                     x_name: "Time Step",
-                    y_name: "MSE",
-                    line_name: "MSE by Sync",
+                    y_name: "Rewards",
+                    line_name: "",
                     lines: [
                         {
                             name: AlgorithmSynchronization.NO_SYNC,
-                            x: response["no-sync"].turns,
-                            y: response["no-sync"].theta_mse
+                            x: response.turns,
+                            y: response["no-sync"].rewards
                         },
                         {
                             name: AlgorithmSynchronization.FOUR_STEPS,
-                            x: response["four-steps"].turns,
-                            y: response["four-steps"].theta_mse
+                            x: response.turns,
+                            y: response["four-steps"].rewards
                         },
                         {
                             name: AlgorithmSynchronization.TWO_STEPS,
-                            x: response["two-steps"].turns,
-                            y: response["two-steps"].theta_mse
+                            x: response.turns,
+                            y: response["two-steps"].rewards
                         },
                         {
                             name: AlgorithmSynchronization.EACH_STEP,
-                            x: response["each-step"].turns,
-                            y: response["each-step"].theta_mse
+                            x: response.turns,
+                            y: response["each-step"].rewards
                         },
 
                     ]
@@ -232,22 +232,22 @@ export class ProtocolAnalysisComponent implements OnInit {
                             bars:  [
                                 {
                                     name: AlgorithmSynchronization.NO_SYNC,
-                                    x: data["no-sync"].entities,
+                                    x: data.entities,
                                     y: data["no-sync"].times,
                                 },
                                 {
                                     name: AlgorithmSynchronization.FOUR_STEPS,
-                                    x: data["four-steps"].entities,
+                                    x: data.entities,
                                     y: data["four-steps"].times,
                                 },
                                 {
                                     name: AlgorithmSynchronization.TWO_STEPS,
-                                    x: data["two-steps"].entities,
+                                    x: data.entities,
                                     y: data["two-steps"].times,
                                 },
                                 {
                                     name: AlgorithmSynchronization.EACH_STEP,
-                                    x: data["each-step"].entities,
+                                    x: data.entities,
                                     y: data["each-step"].times,
                                 },
                             ]
@@ -262,22 +262,22 @@ export class ProtocolAnalysisComponent implements OnInit {
                             bars:  [
                                 {
                                     name: AlgorithmSynchronization.NO_SYNC,
-                                    x: data2["no-sync"].entities,
+                                    x: data2.entities,
                                     y: data2["no-sync"].times,
                                 },
                                 {
                                     name: AlgorithmSynchronization.FOUR_STEPS,
-                                    x: data2["four-steps"].entities,
+                                    x: data2.entities,
                                     y: data2["four-steps"].times,
                                 },
                                 {
                                     name: AlgorithmSynchronization.TWO_STEPS,
-                                    x: data2["two-steps"].entities,
+                                    x: data2.entities,
                                     y: data2["two-steps"].times,
                                 },
                                 {
                                     name: AlgorithmSynchronization.EACH_STEP,
-                                    x: data2["each-step"].entities,
+                                    x: data2.entities,
                                     y: data2["each-step"].times,
                                 },
                             ]

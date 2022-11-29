@@ -302,9 +302,33 @@ async def home( M : int, N : int, K : int, d : int, algorithm : str, algorithm_s
 
 
 
+@app.get("/api/rewards/sync")
+def times( M : int, N : int, K : int, d : int, algorithm : str, algorithm_security : str  ):
+    """
+    Description: Return the time at each time step.
+    """
 
+    recording = read_recording_from_parameters(
+        M=M,
+        K=K,
+        N=N,
+        d=d,
+    )
 
-
+    res = {
+        algorithm_synchronization: {
+            "rewards": recording.get_rewards_by_turn(
+                algorithm=algorithm,
+                algorithm_security=algorithm_security,
+                algorithm_synchronization=algorithm_synchronization 
+            ),
+           
+        }
+        for algorithm_synchronization in SYNC_VERSIONS
+    }
+    res["turns"] = list(range(1, N + 1))
+    return res
+    
 
 
 

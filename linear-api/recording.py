@@ -448,33 +448,37 @@ class Recording:
 
     def get_component_execution_time_by_security(self, algorithm: str, algorithm_sync: str):
         res = {}
+        entities = None
         for algorithm_sec in SEC_VERSIONS:
             algorithm_version = self.get_algorithm_version(algorithm_sec, algorithm_sync)
-            entities = list(self.root.get([algorithm, algorithm_version, ENTITIES_KEY]).export().keys())
+            if not entities:   entities = list(self.root.get([algorithm, algorithm_version, ENTITIES_KEY]).export().keys())
             res[algorithm_sec] = {
-                "entities": entities,
                 "times": [
                     self.root.get([algorithm, algorithm_version, ENTITIES_KEY, entity, EXECUTION_TIME_KEY])
                     for entity in entities
                 ]
             }
+        res["entities"] = entities
         return res
 
     def get_component_time_by_synchronization(self, algorithm: str, algorithm_security: str):
         res = {}
+        entities = None
         for algorithm_synchronization in SYNC_VERSIONS:
             algorithm_version = self.get_algorithm_version(algorithm_security, algorithm_synchronization)
-            entities = list(self.root.get([algorithm, algorithm_version, ENTITIES_KEY]).export().keys())
+            if not entities:
+                entities = list(self.root.get([algorithm, algorithm_version, ENTITIES_KEY]).export().keys())
             res[algorithm_synchronization] = {
-                "entities": [
-                    "Server" if entity == "server" else "DO " + str( int(entity.replace("data-owner-", "")) + 1 )
-                    for entity in entities
-                ],
+                
                 "times": [
                     self.root.get([algorithm, algorithm_version, ENTITIES_KEY, entity, EXECUTION_TIME_KEY])
                     for entity in entities
                 ]
             }
+        res["entities"] = [
+            "Server" if entity == "server" else "DO " + str( int(entity.replace("data-owner-", "")) + 1 )
+            for entity in entities
+        ]
         return res
 
     def get_cumulative_time_by_sync(self, algorithm: str, algorithm_security: str):

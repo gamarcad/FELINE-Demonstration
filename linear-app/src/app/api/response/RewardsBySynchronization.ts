@@ -1,8 +1,9 @@
-import {ThetaMSE} from "./ThetaMSE";
+import {Rewards} from "./Rewards";
 
-export interface ThethaMSEBySynchronization {
-    "no-sync": ThetaMSE,
-    "four-steps" : ThetaMSE,
-    "two-steps" : ThetaMSE,
-    "each-step" : ThetaMSE,
+export interface RewardsBySynchronization {
+    "no-sync": Rewards,
+    "four-steps" : Rewards,
+    "two-steps" : Rewards,
+    "each-step" : Rewards,
+    "turns": number[],
 }

@@ -21,6 +21,8 @@ import {TimeWhileVaryingParameterBySynchronization} from "./response/TimeWhileVa
 import {ParametersValues} from "./response/ParametersValues";
 import {ComponentExecutionTimeBySynchronization} from "./response/ComponentExecutionTimeBySynchronization";
 import {ComponentExecutionTimeBySynchronizationRequest} from "./request/ComponentExecutionTimeBySynchronizationRequest";
+import {RewardsBySynchronization} from "./response/RewardsBySynchronization";
+import {RewardsBySynchronizationRequest} from "./request/RewardsBySynchronizationRequest";
 
 @Injectable({
     providedIn: 'root'
@@ -34,6 +36,7 @@ export class BackEnd {
     private static TIME_WHEN_VARYING_M : string  = "/times/M";
     private static TIME_WHEN_VARYING_N : string  = "/times/N";
     private static TIME_WHEN_VARYING_d : string  = "/times/d";
+    private static REWARDS_BY_SYNC : string  = "/rewards/sync";
     private static PARAMETERS_VALUES : string = "/parameters/values"
 
 
@@ -171,6 +174,22 @@ export class BackEnd {
                 M: configuration.M,
                 K: configuration.K,
                 N: configuration.N,
+                algorithm: configuration.algorithm,
+                algorithm_security: configuration.algorithm_security,
+            }
+        }).pipe(
+            retry(1),
+            catchError(this.processError)
+        );
+    }
+
+    getRewardsBySynchronization(configuration : RewardsBySynchronizationRequest) : Observable<RewardsBySynchronization> {
+        return this.httpClient.get<RewardsBySynchronization>( this.endpoint + BackEnd.REWARDS_BY_SYNC, {
+            params: {
+                N: configuration.N,
+                M: configuration.M,
+                K: configuration.K,
+                d: configuration.d,
                 algorithm: configuration.algorithm,
                 algorithm_security: configuration.algorithm_security,
             }

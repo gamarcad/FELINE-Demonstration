@@ -41,6 +41,13 @@ else
     echo "The data folder (./linear-api/data) has been localized."
 fi
 
-# launching in docker
-echo "Everything is ready to run !"
-sudo docker-compose up
+
+# launch FELINE
+if [ $1 == '--prod' ]; then
+    echo "Launching FELINE in production mode"
+    docker compose -f docker-compose.yml -f production.yml up
+else
+    echo "Launching FELINE in development mode"
+    docker compose -f docker-compose.yml up
+fi
+

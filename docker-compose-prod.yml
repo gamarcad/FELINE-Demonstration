@@ -20,4 +20,4 @@ services:
       - "81:4200"
     volumes:
       - './linear-app/src:/app/src/'
-    command: ng serve --configuration=production --host 0.0.0.0 --port 4200
+    command: ng serve --configuration=production --host demo-feline.limos.fr --port 4200

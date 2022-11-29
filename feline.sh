@@ -43,7 +43,7 @@ fi
 
 
 # launch FELINE
-if [ $1 == '--prod' ]; then
+if [[ "$1" == '--prod' ]]; then
     echo "Launching FELINE in production mode"
     ln -s docker-compose-prod.yml docker-compose.yml
 else

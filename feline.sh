@@ -51,6 +51,7 @@ if [[ "$1" == '--prod' ]]; then
     ln -s docker-compose-prod.yml docker-compose.yml
 else
     echo "Launching FELINE in development mode"
+    ln -s docker-compose-dev.yml docker-compose.yml
 fi
 
 docker-compose up
